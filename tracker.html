@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readify</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Readify</div>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Explorer</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="recommender.html">Recommender</a></li>
+                <li><a href="flow.html">Flow</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main> 
+        <h2>Reading Progress</h2>
+        <input type="number" id="total" placeholder="Total Pages">
+        <input type="number" id="read" placeholder="Pages Read">
+        <button onclick="calculateProgress()">Track</button>
+        <div id="result"></div>
+
+        <script>
+            function calculateProgress() {
+            const total = document.getElementById("total").value;
+            const read = document.getElementById("read").value;
+            const pct = (read / total) * 100;
+            document.getElementById("result").innerText = `Progress: ${pct.toFixed(2)}%`;
+            localStorage.setItem("readingProgress", pct);
+            }
+        </script>
+     </main>
+
+    <footer>
+        <p>&copy; 2026 Readify</p>
+        <input type="email" id="newsletterEmail" placeholder="Subscribe">
+        <button onclick="saveNewsletter()">Join</button>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

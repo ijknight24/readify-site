@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readify</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Readify</div>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Explorer</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="recommender.html">Recommender</a></li>
+                <li><a href="flow.html">Flow</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+            <section class="flow-container" style="max-width: 600px; margin: 0 auto;">
+    
+            <div style="text-align: center; margin-bottom: 40px; padding: 20px; background: #f4f4f4; border-radius: 8px;">
+            <h2>Reading Ambience</h2>
+            <p>Enhance your focus with cozy rain sounds.</p>
+            <audio id="rainAudio" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            </audio>
+            <button onclick="toggleSound()" id="soundBtn" style="padding: 15px 30px; font-size: 1.2rem; cursor: pointer;">
+            Play Sounds 🌧️
+            </button>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <h3>Books I've Finished</h3>
+                <div style="display: flex; gap: 10px;">
+                <input type="text" id="completedBookInput" placeholder="Enter book title..." style="flex: 1; padding: 10px;">
+                <button onclick="addCompletedBook()" style="padding: 10px; background: #333; color: white; border: none;">Add</button>
+                </div>
+        
+                <ul id="completedList" style="list-style: none; padding: 0; margin-top: 20px;">
+                </ul>
+            </div>
+</section>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Readify</p>
+        <input type="email" id="newsletterEmail" placeholder="Subscribe">
+        <button onclick="saveNewsletter()">Join</button>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

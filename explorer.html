@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readify</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Readify</div>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Explorer</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="recommender.html">Recommender</a></li>
+                <li><a href="flow.html">Flow</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+         <input type="text" placeholder="Search title or genre..." onkeyup="renderBooks(this.value)">
+<div id="book-grid" class="book-grid"></div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeModal()" style="cursor:pointer; float:right;">&times;</span>
+        <div id="modal-body"></div>
+    </div>
+</div>
+        </main>
+
+    <footer>
+        <p>&copy; 2026 Readify</p>
+        <input type="email" id="newsletterEmail" placeholder="Subscribe">
+        <button onclick="saveNewsletter()">Join</button>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
