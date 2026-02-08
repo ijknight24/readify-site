@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readify</title>
+    <title>Recommender - Readify</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
@@ -16,7 +15,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="explorer.html">Explorer</a></li>
                 <li><a href="tracker.html">Tracker</a></li>
-                <li><a href="recommender.html">Recommender</a></li>
+                <li><a href="recommender.html" class="active">Recommender</a></li>
                 <li><a href="flow.html">Flow</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
             </ul>
@@ -24,45 +23,57 @@
     </header>
 
     <main>
-        <section class="recommender-container" style="text-align: center; padding: 20px;">
-        <h2>Find Your Next Read</h2>
-    
-            <div style="margin-bottom: 20px;">
-                <select id="genreSelect" style="padding: 10px; font-size: 1rem;">
-                <option value="all">Any Genre</option>
-                <option value="Fiction">Fiction</option>
-                <option value="Sci-Fi">Sci-Fi</option>
-                <option value="Fantasy">Fantasy</option>
+        <div class="recommender-container" style="max-width: 700px; margin: 40px auto; text-align: center;">
+            
+            <h1 style="color: var(--primary);">Find Your Next Read 🍃</h1>
+            
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+                <select id="genreSelect">
+                    <option value="all">Any Genre</option>
+                    <option value="Fiction">Fiction</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Mystery">Mystery</option>
                 </select>
-        
-                <select id="lengthSelect" style="padding: 10px; font-size: 1rem;">
-                <option value="all">Any Length</option>
-                <option value="Short">Short</option>
-                 <option value="Medium">Medium</option>
-                <option value="Long">Long</option>
+                <select id="lengthSelect">
+                    <option value="all">Any Length</option>
+                    <option value="Short">Short</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Long">Long</option>
                 </select>
-        
-                <button onclick="recommendBook()" style="padding: 10px 20px; background-color: #333; color: white; border: none; cursor: pointer;">
-                Pick for Me!
-                </button>
+                <button onclick="recommendBook()" style="padding: 15px; font-size: 1.1rem;">✨ Pick a Book!</button>
             </div>
 
-            <div id="recommendation-result" style="margin-top: 30px; border: 2px dashed #ccc; padding: 20px; display: none;">
-                <h3 id="rec-title"></h3>
-                <p id="rec-author"></p>
-                <p id="rec-desc"></p>
-                <button onclick="saveRecommendation()" style="margin-top: 10px; padding: 8px; background-color: green; color: white; border: none; cursor: pointer;">
-                Save to My List
-            </button>
+            <div id="recommendation-result" style="display: none; background: var(--white); border: 3px dashed var(--secondary); padding: 30px; border-radius: 15px;">
+                <h2 style="color: var(--primary); margin-top: 0;">We Recommend:</h2>
+                <h3 id="rec-title" style="font-size: 1.8rem; margin: 10px 0;">Title</h3>
+                <p id="rec-author" style="font-style: italic; color: #666;">Author</p>
+                <p id="rec-desc" style="line-height: 1.6;">Description...</p>
+                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
+                    <button onclick="recommendBook()" style="background: #777;">Pick Another</button>
+                    <button onclick="saveRecommendation()">❤️ Save to List</button>
+                </div>
             </div>
-        </section>
-
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Readify</p>
-        <input type="email" id="newsletterEmail" placeholder="Subscribe">
-        <button onclick="saveNewsletter()">Join</button>
+    <footer style="background-color: var(--dark); color: white; padding: 2rem; text-align: center; margin-top: auto;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 10px;">&copy; 2026 Readify. All rights reserved.</p>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" 
+                       style="padding: 10px; border-radius: 5px; border: none; width: 250px;">
+                <button onclick="saveNewsletter()" 
+                        style="background-color: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    Subscribe
+                </button>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.9rem; color: #b2bec3;">
+                <a href="index.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Home</a> |
+                <a href="explorer.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Books</a> |
+                <a href="feedback.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Contact</a>
+            </div>
+        </div>
     </footer>
 
     <script src="data.js"></script>

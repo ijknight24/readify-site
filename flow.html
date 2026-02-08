@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readify</title>
+    <title>Reading Flow - Readify</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
@@ -17,45 +16,54 @@
                 <li><a href="explorer.html">Explorer</a></li>
                 <li><a href="tracker.html">Tracker</a></li>
                 <li><a href="recommender.html">Recommender</a></li>
-                <li><a href="flow.html">Flow</a></li>
+                <li><a href="flow.html" class="active">Flow</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-            <section class="flow-container" style="max-width: 600px; margin: 0 auto;">
-    
-            <div style="text-align: center; margin-bottom: 40px; padding: 20px; background: #f4f4f4; border-radius: 8px;">
-            <h2>Reading Ambience</h2>
-            <p>Enhance your focus with cozy rain sounds.</p>
-            <audio id="rainAudio" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-            </audio>
-            <button onclick="toggleSound()" id="soundBtn" style="padding: 15px 30px; font-size: 1.2rem; cursor: pointer;">
-            Play Sounds 🌧️
-            </button>
+        <div class="flow-container" style="max-width: 600px; margin: 40px auto; padding: 20px;">
+            <div style="background: var(--accent); padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px; border: 2px solid var(--primary);">
+                <h2 style="color: var(--primary); margin-top: 0;">🍋 Citrus Focus Mode</h2>
+                <p>Play soothing rain sounds to stay fresh.</p>
+                <audio id="rainAudio" loop>
+                    <source src="https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg" type="audio/ogg">
+                </audio>
+                <button onclick="toggleSound()" id="soundBtn" style="padding: 15px 30px; font-size: 1.2rem; box-shadow: var(--shadow);">
+                    Play Rain 🌧️
+                </button>
             </div>
 
-            <div style="margin-top: 20px;">
-                <h3>Books I've Finished</h3>
-                <div style="display: flex; gap: 10px;">
-                <input type="text" id="completedBookInput" placeholder="Enter book title..." style="flex: 1; padding: 10px;">
-                <button onclick="addCompletedBook()" style="padding: 10px; background: #333; color: white; border: none;">Add</button>
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); border-top: 5px solid var(--secondary);">
+                <h3 style="margin-top: 0; color: var(--primary);">📚 Books I've Finished</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <input type="text" id="completedBookInput" placeholder="Enter book title..." style="flex: 1;">
+                    <button onclick="addCompletedBook()">Add</button>
                 </div>
-        
-                <ul id="completedList" style="list-style: none; padding: 0; margin-top: 20px;">
-                </ul>
+                <ul id="completedList" style="list-style: none; padding: 0;"></ul>
+                <button onclick="clearCompletedList()" style="background: var(--error); font-size: 0.8rem; margin-top: 10px;">Clear List</button>
             </div>
-</section>
-
-
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Readify</p>
-        <input type="email" id="newsletterEmail" placeholder="Subscribe">
-        <button onclick="saveNewsletter()">Join</button>
+    <footer style="background-color: var(--dark); color: white; padding: 2rem; text-align: center; margin-top: auto;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 10px;">&copy; 2026 Readify. All rights reserved.</p>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" 
+                       style="padding: 10px; border-radius: 5px; border: none; width: 250px;">
+                <button onclick="saveNewsletter()" 
+                        style="background-color: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    Subscribe
+                </button>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.9rem; color: #b2bec3;">
+                <a href="index.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Home</a> |
+                <a href="explorer.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Books</a> |
+                <a href="feedback.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Contact</a>
+            </div>
+        </div>
     </footer>
 
     <script src="data.js"></script>

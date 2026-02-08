@@ -14,7 +14,7 @@
             <button class="hamburger" onclick="toggleMenu()">☰</button>
             <ul id="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="explorer.html">Explorer</a></li>
+                <li><a href="explorer.html" class="active">Explorer</a></li>
                 <li><a href="tracker.html">Tracker</a></li>
                 <li><a href="recommender.html">Recommender</a></li>
                 <li><a href="flow.html">Flow</a></li>
@@ -24,21 +24,40 @@
     </header>
 
     <main>
-         <input type="text" placeholder="Search title or genre..." onkeyup="renderBooks(this.value)">
-<div id="book-grid" class="book-grid"></div>
+        <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center;">
+            <input type="text" id="searchInput" placeholder="Search book titles..." onkeyup="filterBooks()" style="padding: 10px; flex: 2;">
+            <select id="genreFilter" onchange="filterBooks()" style="padding: 10px; flex: 1; cursor: pointer;">
+                <option value="all">All Genres</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Mystery">Mystery</option>
+            </select>
+        </div>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span onclick="closeModal()" style="cursor:pointer; float:right;">&times;</span>
-        <div id="modal-body"></div>
-    </div>
-</div>
-        </main>
+        <div id="book-grid" class="book-grid"></div>
 
-    <footer>
-        <p>&copy; 2026 Readify</p>
-        <input type="email" id="newsletterEmail" placeholder="Subscribe">
-        <button onclick="saveNewsletter()">Join</button>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span onclick="closeModal()" style="cursor:pointer; float:right; font-size: 1.5rem;">&times;</span>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background-color: var(--dark); color: white; padding: 2rem; text-align: center; margin-top: auto;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 10px;">&copy; 2026 Readify. All rights reserved.</p>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" style="padding: 10px; border-radius: 5px; border: none; width: 250px;">
+                <button onclick="saveNewsletter()" style="background-color: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Subscribe</button>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.9rem; color: #b2bec3;">
+                <a href="index.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Home</a> |
+                <a href="explorer.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Books</a> |
+                <a href="feedback.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Contact</a>
+            </div>
+        </div>
     </footer>
 
     <script src="data.js"></script>

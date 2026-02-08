@@ -13,7 +13,7 @@
             <div class="logo">Readify</div>
             <button class="hamburger" onclick="toggleMenu()">☰</button>
             <ul id="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="explorer.html">Explorer</a></li>
                 <li><a href="tracker.html">Tracker</a></li>
                 <li><a href="recommender.html">Recommender</a></li>
@@ -24,17 +24,50 @@
     </header>
 
     <main>
-         <section class="hero" style="display: grid; grid-template-columns: 1fr 1fr;">
-    <div id="quote-box"><h1>"So many books, so little time."</h1></div>
-    <div class="hero-img"><img src="https://placehold.co/400x300" alt="Hero"></div>
-</section>
-<div id="author-display" style="margin-top: 20px; font-size: 1.5em; font-weight: bold;"></div>
+        <section class="hero-container" style="display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 50px;">
+            <div style="padding: 60px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--primary), var(--secondary));">
+                <h1 style="color: white; font-size: 3rem; margin: 0 0 20px 0;">Readify.</h1>
+                <p id="hero-quote-text" style="color: rgba(255,255,255,0.95); font-size: 1.4rem; font-style: italic; line-height: 1.6;">
+                    "So many books, so little time."
+                </p>
+                <a href="explorer.html" style="margin-top: 30px;">
+                    <button style="background: white; color: var(--primary); padding: 15px 35px;">
+                        Start Reading 🌿
+                    </button>
+                </a>
+            </div>
+            <div style="position: relative;">
+                <img id="hero-image-display" 
+                     src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80" 
+                     alt="Reading in nature" 
+                     style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </section>
+
+        <section style="text-align: center; padding: 40px; background: var(--accent); border-radius: 15px; border: 1px solid var(--secondary);">
+            <h3 style="color: var(--dark); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Featured Today</h3>
+            <h2 style="font-size: 2.5rem; color: var(--primary); margin-top: 10px;">Author of the Day</h2>
+            <div id="author-display" style="font-size: 2rem; font-weight: bold; margin-top: 10px; color: var(--dark);"></div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Readify</p>
-        <input type="email" id="newsletterEmail" placeholder="Subscribe">
-        <button onclick="saveNewsletter()">Join</button>
+    <footer style="background-color: var(--dark); color: white; padding: 2rem; text-align: center; margin-top: auto;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 10px;">&copy; 2026 Readify. All rights reserved.</p>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" 
+                       style="padding: 10px; border-radius: 5px; border: none; width: 250px;">
+                <button onclick="saveNewsletter()" 
+                        style="background-color: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    Subscribe
+                </button>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.9rem; color: #b2bec3;">
+                <a href="index.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Home</a> |
+                <a href="explorer.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Books</a> |
+                <a href="feedback.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Contact</a>
+            </div>
+        </div>
     </footer>
 
     <script src="data.js"></script>

@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readify</title>
+    <title>Feedback - Readify</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+    <style>
+        .faq-item { background: white; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .faq-question { padding: 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff; }
+        .faq-question:hover { background: #f8f9fa; color: var(--primary); }
+        .faq-answer { display: none; padding: 20px; border-top: 1px solid #eee; color: #555; line-height: 1.6; animation: slideDown 0.3s ease; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .arrow { transform: rotate(180deg); }
+        .arrow { transition: transform 0.3s; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
     <header>
@@ -18,27 +27,75 @@
                 <li><a href="tracker.html">Tracker</a></li>
                 <li><a href="recommender.html">Recommender</a></li>
                 <li><a href="flow.html">Flow</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
             </ul>
         </nav>
     </header>
 
-    <main> 
-        <form onsubmit="event.preventDefault(); saveToStorage('feedback', document.getElementById('msg').value);">
-     <input type="text" placeholder="Name" required>
-     <input type="email" placeholder="Email" required>
-     <textarea id="msg" placeholder="Message" required></textarea>
-     <button type="submit">Send</button>
-     </form>
+    <main>
+        <div style="max-width: 800px; margin: 40px auto; padding: 20px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h1 style="color: var(--dark);">Contact Us</h1>
+                <p>Have suggestions for Readify? We'd love to hear them.</p>
+                <form onsubmit="handleFeedback(event)" style="max-width: 500px; margin: 30px auto; display: flex; flex-direction: column; gap: 15px;">
+                    <input type="text" id="fbName" placeholder="Your Name" required>
+                    <input type="email" id="fbEmail" placeholder="Your Email" required>
+                    <textarea id="fbMsg" placeholder="Your Message..." required rows="5" style="resize: vertical;"></textarea>
+                    <button type="submit">Send Feedback 🚀</button>
+                </form>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <h2 style="text-align: center; margin-bottom: 30px;">Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">How does the reading tracker work? <span class="arrow">▼</span></div>
+                    <div class="faq-answer">Simply enter the total number of pages in your book and how many you have read so far. We calculate the percentage and save it to your browser!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">Is Readify free to use? <span class="arrow">▼</span></div>
+                    <div class="faq-answer">Yes! Readify is a completely free open-source project designed to help you discover and track your reading habits.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">How do I suggest a new book? <span class="arrow">▼</span></div>
+                    <div class="faq-answer">You can use the form above to send us book suggestions. We update our library weekly with new titles!</div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Readify</p>
-        <input type="email" id="newsletterEmail" placeholder="Subscribe">
-        <button onclick="saveNewsletter()">Join</button>
+    <footer style="background-color: var(--dark); color: white; padding: 2rem; text-align: center; margin-top: auto;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="margin-bottom: 10px;">&copy; 2026 Readify. All rights reserved.</p>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" 
+                       style="padding: 10px; border-radius: 5px; border: none; width: 250px;">
+                <button onclick="saveNewsletter()" 
+                        style="background-color: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    Subscribe
+                </button>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.9rem; color: #b2bec3;">
+                <a href="index.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Home</a> |
+                <a href="explorer.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Books</a> |
+                <a href="feedback.html" style="color: #b2bec3; text-decoration: none; margin: 0 10px;">Contact</a>
+            </div>
+        </div>
     </footer>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
+    <script>
+        function toggleFaq(element) {
+            element.parentElement.classList.toggle("active");
+        }
+        function handleFeedback(event) {
+            event.preventDefault();
+            const name = document.getElementById("fbName").value;
+            if(name) {
+                alert("Thanks " + name + "! Your feedback has been sent.");
+                event.target.reset();
+            }
+        }
+    </script>
 </body>
 </html>

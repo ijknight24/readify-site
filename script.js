@@ -1,45 +1,83 @@
-// 1. Reusable Functions
+/* =========================================
+   SCRIPT.JS - CLEANED & UNIFIED
+   ========================================= */
+
+// 1. Reusable Helpers
 function saveToStorage(key, value) { localStorage.setItem(key, value); alert("Saved!"); }
 function getFromStorage(key) { return localStorage.getItem(key); }
-
-// 2. Mobile Menu
 function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
 
-// 3. Author of the Day (Date Logic)
+// 2. Hero Rotation (Home Page)
+const heroContent = [
+    { text: "So many books, so little time.", image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=800&q=80" },
+    { text: "A room without books is like a body without a soul.", image: "https://images.unsplash.com/photo-1507842217121-9eac83eaf0f8?auto=format&fit=crop&w=800&q=80" },
+    { text: "Reading gives us someplace to go when we have to stay where we are.", image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80" }
+];
+
+let currentIndex = 0;
+
+function startHeroRotation() {
+    const quoteElement = document.getElementById("hero-quote-text");
+    const imageElement = document.getElementById("hero-image-display");
+    if (!quoteElement || !imageElement) return;
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % heroContent.length; 
+        quoteElement.style.opacity = 0; 
+        setTimeout(() => {
+            quoteElement.innerText = '"' + heroContent[currentIndex].text + '"';
+            imageElement.src = heroContent[currentIndex].image;
+            quoteElement.style.opacity = 1; 
+        }, 500);
+    }, 4000);
+}
+
+// 3. Author of the Day
 function loadAuthorOfDay() {
-    const today = new Date().getDate(); // Gets day number (1-31)
-    const authorIndex = today % bookData.length; // Cycles through data
     const authorElement = document.getElementById("author-display");
-    if(authorElement) authorElement.innerText = "Author of the Day: " + bookData[authorIndex].author;
+    if(authorElement && typeof bookData !== 'undefined') {
+        const today = new Date().getDate(); 
+        const author = bookData[today % bookData.length].author;
+        authorElement.innerText = author;
+    }
 }
 
-// 4. Newsletter
-function saveNewsletter() {
-    const email = document.getElementById("newsletterEmail").value;
-    saveToStorage("newsletter", email);
-}
-
-// 5. Book Explorer Logic (Search/Filter)
-function renderBooks(filterText = "") {
+// 4. Filter Books (Explorer Page)
+function filterBooks() {
     const grid = document.getElementById("book-grid");
-    if(!grid) return; // Only runs on Explorer page
-    grid.innerHTML = "";
-    
-    bookData.filter(book => book.title.toLowerCase().includes(filterText.toLowerCase()) || book.genre.toLowerCase().includes(filterText.toLowerCase()))
-    .forEach(book => {
+    if(!grid) return; 
+
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
+    const selectedGenre = document.getElementById("genreFilter").value;
+
+    grid.innerHTML = ""; 
+
+    const filteredBooks = bookData.filter(book => {
+        const matchesTitle = book.title.toLowerCase().includes(searchText);
+        const matchesGenre = (selectedGenre === "all") || (book.genre === selectedGenre);
+        return matchesTitle && matchesGenre;
+    });
+
+    if(filteredBooks.length === 0) {
+        grid.innerHTML = "<p style='text-align:center; col-span:3;'>No books found!</p>";
+        return;
+    }
+
+    filteredBooks.forEach(book => {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
             <img src="${book.image}" alt="${book.title}">
             <h3>${book.title}</h3>
             <p>${book.author}</p>
+            <p style="font-size: 0.8rem; color: #666;">${book.genre}</p>
             <button onclick="openModal(${book.id})">Details</button>
         `;
         grid.appendChild(card);
     });
 }
 
-// 6. Modal Logic
+// 5. Modal Logic
 function openModal(id) {
     const book = bookData.find(b => b.id === id);
     const modal = document.getElementById("myModal");
@@ -49,39 +87,26 @@ function openModal(id) {
 }
 function closeModal() { document.getElementById("myModal").style.display = "none"; }
 
-// Initialize
-document.addEventListener("DOMContentLoaded", () => {
-    loadAuthorOfDay();
-    renderBooks();
-});
-
-/* =========================================
-   ADD THIS TO THE BOTTOM OF script.js
-   ========================================= */
-
-// --- Recommender Logic ---
+// 6. Recommender Logic
 let currentRecommendation = null;
 
 function recommendBook() {
     const genre = document.getElementById("genreSelect").value;
     const length = document.getElementById("lengthSelect").value;
     
-    // Filter books based on dropdowns
     const eligibleBooks = bookData.filter(book => {
         return (genre === "all" || book.genre === genre) &&
                (length === "all" || book.length === length);
     });
 
     if (eligibleBooks.length === 0) {
-        alert("No books match those filters! Try different ones.");
+        alert("No books match those filters!");
         return;
     }
 
-    // Random Math Logic
     const randomIndex = Math.floor(Math.random() * eligibleBooks.length);
     currentRecommendation = eligibleBooks[randomIndex];
 
-    // Display Result
     document.getElementById("recommendation-result").style.display = "block";
     document.getElementById("rec-title").innerText = currentRecommendation.title;
     document.getElementById("rec-author").innerText = "by " + currentRecommendation.author;
@@ -93,45 +118,34 @@ function saveRecommendation() {
     let list = JSON.parse(localStorage.getItem("myReadingList")) || [];
     list.push(currentRecommendation.title);
     localStorage.setItem("myReadingList", JSON.stringify(list));
-    alert(currentRecommendation.title + " saved to your list!");
+    alert("Saved!");
 }
 
-// --- Flow Page Logic (Sounds & Tracker) ---
-
-function toggleSound() {
-    const audio = document.getElementById("rainAudio");
-    const btn = document.getElementById("soundBtn");
-    
-    if (audio.paused) {
-        audio.play();
-        btn.innerText = "Pause Sounds ⏸️";
-    } else {
-        audio.pause();
-        btn.innerText = "Play Sounds 🌧️";
-    }
+// 7. Newsletter
+function saveNewsletter() {
+    const email = document.getElementById("newsletterEmail").value;
+    if(email) saveToStorage("newsletter", email);
 }
 
+// 8. Flow Page Logic (Tracker)
 function addCompletedBook() {
     const input = document.getElementById("completedBookInput");
     const title = input.value;
     if (!title) return;
 
-    // Save to LocalStorage
     let completed = JSON.parse(localStorage.getItem("completedBooks")) || [];
     completed.push(title);
     localStorage.setItem("completedBooks", JSON.stringify(completed));
-
-    // Update UI
     renderCompletedList();
-    input.value = ""; // Clear input
+    input.value = ""; 
 }
 
 function renderCompletedList() {
     const list = document.getElementById("completedList");
-    if (!list) return; // Stop if not on Flow page
+    if (!list) return; 
 
     const completed = JSON.parse(localStorage.getItem("completedBooks")) || [];
-    list.innerHTML = ""; // Clear current list
+    list.innerHTML = ""; 
     
     completed.forEach(book => {
         const li = document.createElement("li");
@@ -142,5 +156,41 @@ function renderCompletedList() {
     });
 }
 
-// Call this when page loads to show saved books
-document.addEventListener("DOMContentLoaded", renderCompletedList);
+function clearCompletedList() {
+    if(confirm("Delete history?")) {
+        localStorage.removeItem("completedBooks"); 
+        renderCompletedList(); 
+    }
+}
+
+// 9. AUDIO FIX (Prevents Interrupted Error)
+function toggleSound() {
+    const audio = document.getElementById("rainAudio");
+    const btn = document.getElementById("soundBtn");
+
+    if (!audio) return;
+
+    if (audio.paused) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                btn.innerText = "Pause Rain ⏸️";
+                btn.style.backgroundColor = "#e63946"; 
+            }).catch(error => {
+                console.log("Audio waiting...");
+            });
+        }
+    } else {
+        audio.pause();
+        btn.innerText = "Play Rain 🌧️";
+        btn.style.backgroundColor = ""; 
+    }
+}
+
+// 10. Initialization (Run Once)
+document.addEventListener("DOMContentLoaded", () => {
+    startHeroRotation();
+    loadAuthorOfDay();
+    filterBooks(); // For Explorer
+    renderCompletedList(); // For Flow
+});
