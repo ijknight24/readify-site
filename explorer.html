@@ -10,7 +10,9 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Readify</div>
+            <div class="logo">
+                <img src="r images/logo.png" alt="Readify Logo" style="height: 160px; vertical-align: middle;">
+            </div>
             <button class="hamburger" onclick="toggleMenu()">☰</button>
             <ul id="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -26,13 +28,15 @@
     <main>
         <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center;">
             <input type="text" id="searchInput" placeholder="Search book titles..." onkeyup="filterBooks()" style="padding: 10px; flex: 2;">
+            
             <select id="genreFilter" onchange="filterBooks()" style="padding: 10px; flex: 1; cursor: pointer;">
                 <option value="all">All Genres</option>
                 <option value="Fiction">Fiction</option>
                 <option value="Sci-Fi">Sci-Fi</option>
                 <option value="Fantasy">Fantasy</option>
                 <option value="Mystery">Mystery</option>
-            </select>
+                <option value="Graphic Novel">Graphic Novel</option> </select>
+
         </div>
 
         <div id="book-grid" class="book-grid"></div>

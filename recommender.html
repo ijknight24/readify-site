@@ -9,7 +9,9 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Readify</div>
+            <div class="logo">
+                <img src="r images/logo.png" alt="Readify Logo" style="height: 160px; vertical-align: middle;">
+            </div>
             <button class="hamburger" onclick="toggleMenu()">☰</button>
             <ul id="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -28,13 +30,15 @@
             <h1 style="color: var(--primary);">Find Your Next Read 🍃</h1>
             
             <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+                
                 <select id="genreSelect">
                     <option value="all">Any Genre</option>
                     <option value="Fiction">Fiction</option>
                     <option value="Sci-Fi">Sci-Fi</option>
                     <option value="Fantasy">Fantasy</option>
                     <option value="Mystery">Mystery</option>
-                </select>
+                    <option value="Graphic Novel">Graphic Novel</option> </select>
+
                 <select id="lengthSelect">
                     <option value="all">Any Length</option>
                     <option value="Short">Short</option>

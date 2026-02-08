@@ -1,4 +1,9 @@
+/* =========================================
+   DATA.JS - WITH "GRAPHIC NOVEL" GENRE
+   ========================================= */
+
 const bookData = [
+    // --- ORIGINAL BOOKS (ID 1-8) ---
     {
         id: 1,
         title: "Dune",
@@ -27,14 +32,14 @@ const bookData = [
         author: "J.R.R. Tolkien",
         genre: "Fantasy",
         length: "Medium",
-        image: "r images/thehobbit.jpg", // Fantasy book
+        image: "r images/thehobbit.jpg", 
         synopsis: "A reluctant Hobbit sets out on a quest to reclaim a lost kingdom from the lonely mountain.",
         sequels: ["The Fellowship of the Ring"],
         ratings: [{ user: "Bilbo", score: 5 }]
     },
     {
         id: 4,
-        title: "Harry Potter and the Philosopher's Stone",
+        title: "Harry Potter",
         author: "J.K. Rowling",
         genre: "Fantasy",
         length: "Medium",
@@ -67,7 +72,7 @@ const bookData = [
     },
     {
         id: 7,
-        title: "The Adventures of Sherlock Holmes",
+        title: "Sherlock Holmes",
         author: "Arthur Conan Doyle",
         genre: "Mystery",
         length: "Medium",
@@ -86,6 +91,52 @@ const bookData = [
         synopsis: "On her fifth wedding anniversary, Amy Dunne suddenly disappears from her home on the Mississippi River.",
         sequels: ["None"],
         ratings: [{ user: "Nick", score: 2 }]
+    },
+
+    // --- GRAPHIC NOVELS (Genre Changed to "Graphic Novel") ---
+    {
+        id: 9,
+        title: "Supergirl: Woman of Tomorrow",
+        author: "Tom King",
+        genre: "Graphic Novel",
+        length: "Medium",
+        image: "r images/gn1.jpg", 
+        synopsis: "Kara Zor-El has seen her world destroyed. Now, she seeks meaning in a galaxy that only sees her as Superman's cousin. A masterpiece of modern sci-fi.",
+        sequels: ["None"],
+        ratings: [{ user: "Kara", score: 5 }]
+    },
+    {
+        id: 10,
+        title: "The Dark Knight Returns",
+        author: "Frank Miller",
+        genre: "Graphic Novel",
+        length: "Medium",
+        image: "r images/gn2.jpg", 
+        synopsis: "Bruce Wayne is retired and Gotham is burning. At 55 years old, he must don the cape and cowl one last time to save his city from chaos.",
+        sequels: ["DK2", "The Master Race"],
+        ratings: [{ user: "Bruce", score: 5 }]
+    },
+    {
+        id: 11,
+        title: "Watchmen",
+        author: "Alan Moore",
+        genre: "Graphic Novel",
+        length: "Long",
+        image: "r images/gn3.jpg", 
+        synopsis: "Who watches the Watchmen? When a retired hero is murdered, the remaining vigilantes uncover a conspiracy that threatens the entire world.",
+        sequels: ["Doomsday Clock"],
+        ratings: [{ user: "Rorschach", score: 5 }]
+    },
+    {
+        id: 12,
+        title: "The Infinity Gauntlet",
+        author: "Jim Starlin",
+        genre: "Graphic Novel",
+        length: "Medium",
+        image: "r images/gn4.jpg", 
+        synopsis: "The Mad Titan Thanos has seized the Infinity Gems and has total control over the universe. Can Earth's heroes stop a god?",
+        sequels: ["Infinity War", "Infinity Crusade"],
+        ratings: [{ user: "Thanos", score: 5 }]
     }
 ];
 
