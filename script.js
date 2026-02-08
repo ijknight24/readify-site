@@ -1,5 +1,5 @@
 /* =========================================
-   SCRIPT.JS - CLEANED & UNIFIED
+   SCRIPT.JS - FINAL VERSION WITH AUTHORS
    ========================================= */
 
 // 1. Reusable Helpers
@@ -7,29 +7,54 @@ function saveToStorage(key, value) { localStorage.setItem(key, value); alert("Sa
 function getFromStorage(key) { return localStorage.getItem(key); }
 function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
 
+
 // 2. Hero Rotation (Home Page)
 const heroContent = [
-    { text: "So many books, so little time.", image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=800&q=80" },
-    { text: "A room without books is like a body without a soul.", image: "https://images.unsplash.com/photo-1507842217121-9eac83eaf0f8?auto=format&fit=crop&w=800&q=80" },
-    { text: "Reading gives us someplace to go when we have to stay where we are.", image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80" }
+    { 
+        text: "So many books, so little time.", 
+        author: "- Frank Zappa",
+        image: "r images/q1.jpg"   // <--- Updated path
+    },
+    { 
+        text: "A room without books is like a body without a soul.", 
+        author: "- Cicero",
+        image: "r images/q2.jpg"   // <--- Updated path
+    },
+    { 
+        text: "Reading gives us someplace to go when we have to stay where we are.", 
+        author: "- Mason Cooley",
+        image: "r images/q3.jpg"   // <--- Updated path
+    }
 ];
 
 let currentIndex = 0;
 
 function startHeroRotation() {
     const quoteElement = document.getElementById("hero-quote-text");
+    const authorElement = document.getElementById("hero-quote-author"); // Select the author text
     const imageElement = document.getElementById("hero-image-display");
-    if (!quoteElement || !imageElement) return;
+    
+    // Only run if elements exist
+    if (!quoteElement || !imageElement || !authorElement) return;
 
     setInterval(() => {
         currentIndex = (currentIndex + 1) % heroContent.length; 
+        
+        // Fade Out
         quoteElement.style.opacity = 0; 
+        authorElement.style.opacity = 0;
+        
         setTimeout(() => {
+            // Update Text
             quoteElement.innerText = '"' + heroContent[currentIndex].text + '"';
+            authorElement.innerText = heroContent[currentIndex].author;
             imageElement.src = heroContent[currentIndex].image;
+            
+            // Fade In
             quoteElement.style.opacity = 1; 
+            authorElement.style.opacity = 1;
         }, 500);
-    }, 4000);
+    }, 4000); // Changes every 4 seconds
 }
 
 // 3. Author of the Day
@@ -51,6 +76,8 @@ function filterBooks() {
     const selectedGenre = document.getElementById("genreFilter").value;
 
     grid.innerHTML = ""; 
+
+    if (typeof bookData === 'undefined') return;
 
     const filteredBooks = bookData.filter(book => {
         const matchesTitle = book.title.toLowerCase().includes(searchText);
