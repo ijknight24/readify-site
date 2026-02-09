@@ -1,9 +1,7 @@
-/* =========================================
-   STYLE.CSS - CITRUS GARDEN THEME
-   ========================================= */
+
 
 :root {
-    /* YOUR NEW COLOR PALETTE */
+    
     --primary: #43a047;   /* Fresh Leaf Green (Buttons/Highlights) */
     --secondary: #ffa726; /* Juicy Light Orange (Hover/Accents) */
     --accent: #f9fbe7;    /* Pale Yellow-Green (Backgrounds) */
@@ -24,7 +22,7 @@ body {
     min-height: 100vh;
     color: var(--dark);
     
-    /* Fresh Background: White with tiny Orange dots */
+   
     background-color: #ffffff;
     background-image: radial-gradient(var(--secondary) 0.5px, transparent 0.5px);
     background-size: 25px 25px;
@@ -33,9 +31,7 @@ body {
 main { flex: 1; padding: 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
 /* Navigation */
-/* =========================================
-   UPDATED NAVIGATION (Fixes Big Header Issue)
-   ========================================= */
+
 
 nav { 
     display: flex; 
@@ -44,35 +40,35 @@ nav {
     background: var(--dark); 
     color: white; 
     
-    /* FIX 1: Less padding top/bottom, so the header stays sleek */
+   
     padding: 0.5rem 2rem; 
     
-    /* FIX 2: Force a maximum height so it never gets "too big" */
+    
     height: 90px; 
     
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border-bottom: 4px solid var(--secondary); 
 }
 
-/* FIX 3: Control the Logo Size */
+
 .logo img {
-    height: 70px; /* Nice and big, but fits inside the 90px header */
-    width: auto;  /* Keeps the logo shape correct */
+    height: 1600px; 
+    width: auto;  
     display: block;
 }
 
 nav ul { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
 
-/* FIX 4: Make the Page Names Bigger & Bolder */
+
 nav a { 
     color: rgba(255,255,255,0.9); 
     text-decoration: none; 
     transition: color 0.3s; 
     
-    font-size: 1.0rem;     /* Increased from default (approx 16px to 19px) */
-    font-weight: 600;      /* Make them bolder */
-    text-transform: uppercase; /* (Optional) Makes it look more professional */
-    letter-spacing: 1px;   /* Adds a tiny bit of space between letters */
+    font-size: 1.0rem;     
+    font-weight: 600;      
+    text-transform: uppercase; 
+    letter-spacing: 1px;   
 }
 
 nav a:hover, nav a.active { color: var(--secondary); } 
@@ -153,7 +149,7 @@ footer {
     /* This handles the gradient on the Home Page automatically */
     background: linear-gradient(135deg, var(--primary), var(--secondary)) !important; 
 }
-/* Note: We use !important here to override the inline styles in index.html safely */
+
 
 /* Responsive */
 @media (max-width: 768px) {

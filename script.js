@@ -1,6 +1,4 @@
-/* =========================================
-   SCRIPT.JS - FINAL SUBMISSION VERSION
-   ========================================= */
+
 
 // 1. Reusable Helpers
 function saveToStorage(key, value) { localStorage.setItem(key, value); alert("Saved!"); }
@@ -18,7 +16,7 @@ let currentIndex = 0;
 
 function startHeroRotation() {
     const quoteElement = document.getElementById("hero-quote-text");
-    const authorElement = document.getElementById("hero-quote-author");
+    const authorElement = document.getElementById("hero-quote-author"); 
     const imageElement = document.getElementById("hero-image-display");
     
     if (!quoteElement || !imageElement || !authorElement) return;
@@ -83,12 +81,13 @@ function filterBooks() {
     });
 }
 
-// 5. Modal Logic (With REQUIRED Table)
+// 5. Modal Logic (THIS IS WHERE THE TABLE IS)
 function openModal(id) {
     const book = bookData.find(b => b.id === id);
     const modal = document.getElementById("myModal");
     const content = document.getElementById("modal-body");
     
+    // --- THIS GENERATES THE TABLE ROWS ---
     const tableRows = book.ratings.map(r => `
         <tr>
             <td style="padding: 8px; border-bottom: 1px solid #eee;">${r.user}</td>
@@ -96,11 +95,13 @@ function openModal(id) {
         </tr>
     `).join("");
 
+    
     content.innerHTML = `
         <h2 style="color: var(--primary); margin-top: 0;">${book.title}</h2>
         <p>${book.synopsis}</p>
         <p><strong>Sequels:</strong> ${book.sequels.join(", ")}</p>
         <h3 style="margin-top: 20px; border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">Community Ratings</h3>
+        
         <table style="width: 100%; border-collapse: collapse; margin-top: 10px; background: #f9f9f9; border-radius: 8px; overflow: hidden;">
             <tr style="background-color: var(--secondary); color: white; text-align: left;">
                 <th style="padding: 10px;">User</th>
@@ -147,7 +148,7 @@ function saveRecommendation() {
     alert("Saved!");
 }
 
-// 7. Tracker Logic (Moved from HTML to JS for "Clean Code" marks)
+// 7. Tracker Logic
 function calculateProgress() {
     const total = document.getElementById("total").value;
     const read = document.getElementById("read").value;

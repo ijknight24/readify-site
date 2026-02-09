@@ -1,9 +1,7 @@
-/* =========================================
-   DATA.JS - WITH "GRAPHIC NOVEL" GENRE
-   ========================================= */
+
 
 const bookData = [
-    // --- ORIGINAL BOOKS (ID 1-8) ---
+    
     {
         id: 1,
         title: "Dune",
@@ -93,7 +91,7 @@ const bookData = [
         ratings: [{ user: "Nick", score: 2 }]
     },
 
-    // --- GRAPHIC NOVELS (Genre Changed to "Graphic Novel") ---
+    
     {
         id: 9,
         title: "Supergirl: Woman of Tomorrow",
